@@ -31,7 +31,6 @@ router.post("/register", (req, res) => {
 
 router.post("/login", (req, res) => {
   // posting login
-
   let { username, password } = req.body;
 
   Users.findBy({ username })
@@ -65,6 +64,14 @@ function generateToken(user) {
   return jwt.sign(payload, secrets.jwtSecret, options);
 }
 
-router.get("/api", (req, res) => {});
+router.get("/api", (req, res) => {
+  Users.getAllUsers()
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
 module.exports = router;
