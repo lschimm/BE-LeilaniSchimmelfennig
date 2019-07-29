@@ -4,7 +4,7 @@
   "description": "",
   "main": "knexfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "start": "node index.js",
     "server": "nodemon index.js"
   },
@@ -19,7 +19,19 @@
     "url": "https://github.com/lschimm/BE-LeilaniSchimmelfennig/issues"
   },
   "homepage": "https://github.com/lschimm/BE-LeilaniSchimmelfennig#readme",
-  "dependencies": {},
+  "dependencies": {
+    "bcrypt": "^3.0.6",
+    "connect-session-knex": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "express-session": "^1.16.2",
+    "helmet": "^3.20.0",
+    "jsonwebtoken": "^8.5.1",
+    "knex": "^0.19.1",
+    "save": "^2.4.0",
+    "sqlite3": "^4.0.9"
+  },
   "devDependencies": {
     "nodemon": "^1.19.1"
   }
