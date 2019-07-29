@@ -64,7 +64,7 @@ function generateToken(user) {
   return jwt.sign(payload, secrets.jwtSecret, options);
 }
 
-router.get("/api", (req, res) => {
+router.get("/users", (req, res) => {
   Users.getAllUsers()
     .then(users => {
       res.status(200).json(users);
