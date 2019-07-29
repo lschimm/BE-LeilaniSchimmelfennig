@@ -1,0 +1,26 @@
+{
+  "name": "BE-LeilaniSchimmelfennig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "knexfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lschimm/BE-LeilaniSchimmelfennig.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lschimm/BE-LeilaniSchimmelfennig/issues"
+  },
+  "homepage": "https://github.com/lschimm/BE-LeilaniSchimmelfennig#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
+}
