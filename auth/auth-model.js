@@ -10,7 +10,6 @@ module.exports = {
 
 async function add(user) {
   const [id] = await db("users").insert(user);
-  console.log(`here **************`, id);
   return findById(id);
 }
 
@@ -23,10 +22,8 @@ function findBy(filter) {
 }
 
 function findById(id) {
-  //   console.log(`id here *******`, id);
   return db("users")
     .where({ id })
-
     .first();
 }
 

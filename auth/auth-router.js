@@ -8,16 +8,18 @@ const secrets = require("../config/secret.js");
 // middleware
 const { authenticate } = require("./restricted-middleware.js");
 
+// this
+require("dotenv").config();
 // the key
 
-// const jwtKey =
-//   process.env.JWT_SECRET ||
-//   "this will be my secret, you guys, and it'll sit right in here.";
+const jwtKey =
+  process.env.JWT_SECRET ||
+  "this will be my secret, you guys, and it'll sit right in here.";
 
 router.post("/register", (req, res) => {
   // posting register
   let user = req.body;
-  const hash = bcrypt.hashSync(user.password, 10);
+  const hash = bcrypt.hashSync(user.password, 12);
   user.password = hash;
 
   Users.add(user)
@@ -58,10 +60,11 @@ function generateToken(user) {
     subject: user.id,
     username: user.username
   };
+  // secret is elsewhere
   const options = {
     expiresIn: "10h"
   };
-  return jwt.sign(payload, secrets.jwtSecret, options);
+  return jwt.sign(payload, jwtKey, options);
 }
 
 router.get("/users", (req, res) => {
