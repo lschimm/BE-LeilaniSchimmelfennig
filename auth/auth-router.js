@@ -79,4 +79,21 @@ router.get("/users", (req, res) => {
     });
 });
 
+//testing this double get
+router.get("users/:id", async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await URLSearchParams.getItemById2(id);
+
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: `this id is wrong => ${id}.` });
+    }
+  } catch (error) {
+    res.status(500).json({ message: `couldn't do it` });
+  }
+});
+
 module.exports = router;

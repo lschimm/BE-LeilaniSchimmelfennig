@@ -10,11 +10,12 @@ module.exports = {
   update,
   findGoal,
   findGoalById,
-  createItem,
+  createItem, // will CREATE the item we need
   deleteItem,
   updateItem,
   getItemByUserId,
-  getItemById
+  getItemById,
+  insert
 };
 
 function find() {}
@@ -22,13 +23,10 @@ function findById(id) {
   return db("goals")
     .where({ id })
     .first();
-  // console.log(`*******id*******`, id)
 }
 async function add(goal) {
   const [id] = await db("goals").insert(goal);
   return findById(id);
-  //check this portion
-  // console.log(`id ******* here`, id)
 }
 function remove(id) {
   return db("goals")
@@ -57,7 +55,7 @@ function getItemById(id) {
 async function createItem(item) {
   const [id] = await db("items")
     .insert(item)
-    .returning("id");
+    .then("id");
   return id;
 }
 
@@ -71,4 +69,11 @@ function deleteItem(id) {
   return db("item")
     .where({ id })
     .del();
+}
+
+// to post the item
+
+function insert(item) {
+  return db("items");
+  insert(item).then(([id]) => this.find(id));
 }

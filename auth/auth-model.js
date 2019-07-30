@@ -5,7 +5,8 @@ module.exports = {
   find,
   findBy,
   findById,
-  getAllUsers
+  getAllUsers,
+  getItemById2
 };
 
 async function add(user) {
@@ -29,4 +30,23 @@ function findById(id) {
 
 function getAllUsers() {
   return db("users");
+}
+
+//needs fixing
+
+function getItemById2(id) {
+  return db("users")
+    .where({ id })
+    .first()
+    .then(user => {
+      if (user) {
+        return db("items")
+          .where({ user_id: id })
+          .then(items => {
+            return { ...user, items };
+          });
+      } else {
+        return null;
+      }
+    });
 }
