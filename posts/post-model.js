@@ -9,8 +9,12 @@ module.exports = {
   remove,
   update,
   findGoal,
-  findGoalById
-  // will need addGoal, addJournalEntry, addPhotoUrl perhaps?
+  findGoalById,
+  createItem,
+  deleteItem,
+  updateItem,
+  getItemByUserId,
+  getItemById
 };
 
 function find() {}
@@ -38,3 +42,33 @@ function update(id, changes) {
 }
 function findGoal() {}
 function findGoalById() {}
+
+// newer functions to test out. woo!
+function getItemByUserId(user_id) {
+  return db("items").where({ user_id });
+}
+
+function getItemById(id) {
+  return db("items")
+    .where({ id })
+    .first();
+}
+
+async function createItem(item) {
+  const [id] = await db("items")
+    .insert(item)
+    .returning("id");
+  return id;
+}
+
+function updateItem(id, item) {
+  return db("item")
+    .where({ id })
+    .update(item);
+}
+
+function deleteItem(id) {
+  return db("item")
+    .where({ id })
+    .del();
+}
