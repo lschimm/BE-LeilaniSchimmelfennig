@@ -16,6 +16,8 @@ const jwtKey =
   process.env.JWT_SECRET ||
   "this will be my secret, you guys, and it'll sit right in here.";
 
+// will be at /api/register && /api/login
+
 router.post("/register", (req, res) => {
   // posting register
   let user = req.body;
