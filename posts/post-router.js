@@ -1,10 +1,19 @@
 const express = require("express");
-const router = express.Router();
+const router = require("express").Router();
 
-const posts = require("./post-model.js");
+const Posts = require("./post-model.js");
 
 router.use(express.json());
 
-// will be at /api/goals
+// will be at /goals
 
-router.get;
+router.get("/", async (req, res) => {
+  try {
+    const goals = await Posts.find(req.query);
+    res.status(200).json(goals);
+  } catch (error) {
+    res.status(500).json({ message: `error retreiving the goals` });
+  }
+});
+
+module.exports = router;
