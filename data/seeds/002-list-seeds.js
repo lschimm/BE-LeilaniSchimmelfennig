@@ -5,9 +5,27 @@ exports.seed = function(knex) {
     .then(function() {
       // Inserts seed entries
       return knex("items").insert([
-        { goal: "goalHere", journalEntry: "entryHere" },
-        { goal: "goalHere", journalEntry: "entryHere" },
-        { goal: "goalHere", journalEntry: "entryHere" }
+        {
+          user_id: 1,
+          goal: "goalHere1",
+          complete: false,
+          journalEntry: "entryHere1",
+          photoUrl: "url1"
+        },
+        {
+          user_id: 1,
+          goal: "goalHere2",
+          complete: false,
+          journalEntry: "entryHere2",
+          photoUrl: "url2"
+        },
+        {
+          user_id: 1,
+          goal: "goalHere3",
+          complete: false,
+          journalEntry: "entryHere3",
+          photoUrl: "url3"
+        }
       ]);
     });
 };
