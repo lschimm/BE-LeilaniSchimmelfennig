@@ -6,11 +6,11 @@ Table of API Endpoints in the Making
 
 ---
 
-POST | /api/login | Logs in | Public
+POST    | /api/login    | Logs in | Public
 
-POST | /api/register | Registers | Public
+POST    | /api/register | Registers | Public
 
-GET | /api/users | Get the Users | Private
+GET     | /api/users    | Get the Users | Private
 
 GET | /api/user | Get certain user | Private
 
@@ -63,3 +63,60 @@ Login User Response 200:
         "message": "Welcome placeholderUsername!",
         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWJqZWN0IjoyNCwidXNlcm5hbWUiOiJkdWRlMTIzNCIsImlhdCI6MTU2NDUxNjIwMywiZXhwIjoxNTY0NTUyMjAzfQ.qWjVDu2Kc_JoM1Hvt197X4ieQ4UACbPNmsOw0UqZuyI"
     }
+
+
+**GET All Users**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/users
+
+- Requires Token (for Headers Authorization)
+- Private Access via login first
+
+**GET User By Id**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/users/:id
+
+- Requires Token (for Headers Authorization)
+- Private Access via login first
+
+***Items***
+
+- User must be logged in
+- Headers Authorization Required
+
+**GET Logged in User**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/users/me
+
+**POST an Item**
+
+Endpoint: https://bw-bucket-list.herokuapp.com/api/item
+
+- Add an item
+- POST request
+
+Example: 
+
+    {
+        "user_id": 25,
+        "id": 8,
+        "goal": "walk across the room again",
+        "complete" : false,
+        "journalEntry" : "I did it",
+        "photoUrl": "a url will go here"
+    }
+
+
+**PUT an Item**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/item
+
+- Edits an item
+- PUT request
+
+
+**GET item by ID**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/item/:id
+
+- 
+
+**DELETE item by ID**
+
+Endpoint: https://bw-bucket-list.herokuapp.com/api/item/:id
+

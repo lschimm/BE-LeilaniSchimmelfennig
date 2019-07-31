@@ -9,32 +9,6 @@ router.use(express.json());
 
 // will be at /api/item
 
-// router.get("/goals/:id", async (/*requireToken*/ req, res) => {
-//   try {
-//     const goals = await Posts.find(req.query);
-//     res.status(200).json(goals);
-//   } catch (error) {
-//     res.status(500).json({ message: `error retreiving the goals` });
-//   }
-// });
-
-router.post("/item", (req, res) => {
-  const itemInfo = req.body;
-  const { user_id, goal, complete, journalEntry, photoUrl } = req.body;
-
-  Posts.insert(itemInfo)
-    .then(goal => {
-      if (!user_id) {
-        res.status(400).json({ message: "need id, etc " });
-      } else {
-        res.status(201).json({ message: `item good`, itemInfo });
-      }
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
-
 router.get("/item/:id", (req, res) => {
   Posts.getItemById(req.params.id)
     .then(res => {
@@ -45,9 +19,31 @@ router.get("/item/:id", (req, res) => {
       }
     })
     .catch(error => {
-      res.status(500).json({ message: "error1", error });
+      res.status(500).json({ message: "Error getting item", error });
     });
 });
+
+
+// post here ****
+// works need json && authorization: token
+
+router.post("/item", (req, res) => {
+  const itemInfo = req.body;
+  const { user_id, goal, complete, journalEntry, photoUrl } = req.body;
+
+  Posts.insert(user_id)
+    .then(goal => {
+      if (!user_id) {
+        res.status(400).json({ message: "need id, etc " });
+      } else {
+        res.status(201).json({ message: `goal  implemented`, itemInfo });
+      }
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 
 // deleting item at id
 // not hooked up yet // errno1
@@ -65,7 +61,8 @@ router.delete("/item/:id", async (req, res) => {
   }
 });
 
-// updating an item at the id // works
+// updating an item at the id 
+// should work with authenticate
 
 router.put("/item/:id", async (req, res) => {
   try {
@@ -82,7 +79,7 @@ router.put("/item/:id", async (req, res) => {
 
 /// posting an item
 
-router.post("item/:id", (req, res) => {});
+router.post("item/:id", (req, res) => { });
 
 // router.post("/item", (req, res) => {
 //   Posts.createItem(req.body)

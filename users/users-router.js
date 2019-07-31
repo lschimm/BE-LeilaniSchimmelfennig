@@ -19,11 +19,34 @@ router.get("/users", (req, res) => {
     });
 });
 
-router.get("/users/:id", (req, res) => {
-  const id = req.params.id;
+// router.get("/users/:id", (req, res) => {
+//   const id = req.params.id;
+//   Users.findById(id)
+//     .then(users => {
+//       res.status(200).json(users);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
+
+router.get('/users/me', (req, res) => {
+  const id = req.decoded.subject;
   Users.findById(id)
-    .then(users => {
-      res.status(200).json(users);
+    .then(user => {
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
+router.get('/users/:id', (req, res) => {
+  const { id } = req.params;
+  console.log();
+  Users.findById(req.params)
+    .then(user => {
+      res.status(200).json(user);
     })
     .catch(error => {
       res.status(500).json(error);
@@ -32,24 +55,25 @@ router.get("/users/:id", (req, res) => {
 
 //need router.get("users/:id/items", (req, res) => {})
 
-//need router.get("item/:id", (req, res) => {})
+
+
 
 // testing this double get
-// router.get("users/:id", async (req, res) => {
-//   const { id } = req.params;
+router.get("users/:id/items", async (req, res) => {
+  const { id } = req.params;
 
-//   try {
-//     const user = await URLSearchParams.getItemById2(id);
+  try {
+    const user = await URLSearchParams.getItemById2(id);
 
-//     if (user) {
-//       res.json(user);
-//     } else {
-//       res.status(404).json({ message: `this id is wrong => ${id}.` });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: `couldn't do it` });
-//   }
-// });
+    if (user) {
+      res.json(user);
+    } else {
+      res.status(404).json({ message: `this id is wrong => ${id}.` });
+    }
+  } catch (error) {
+    res.status(500).json({ message: `couldn't do it` });
+  }
+});
 
 // router.get("/users/:id", (req, res) => {
 //   // const { id } = req.decoded.id;

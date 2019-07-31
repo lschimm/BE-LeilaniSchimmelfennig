@@ -15,10 +15,10 @@ module.exports = {
   updateItem,
   getItemByUserId,
   getItemById,
-  insert
+  insert,
 };
 
-function find() {}
+function find() { }
 function findById(id) {
   return db("items")
     .where({ id })
@@ -38,8 +38,8 @@ function update(id, changes) {
     .where({ id })
     .update(changes, "*");
 }
-function findGoal() {}
-function findGoalById() {}
+function findGoal() { }
+function findGoalById() { }
 
 // newer functions to test out. woo!
 function getItemByUserId(user_id) {
@@ -75,6 +75,6 @@ function deleteItem(id) {
 // to post the item
 
 function insert(item) {
-  return db("items");
+  return db("items")
   insert(item).then(([id]) => this.find(id));
 }

@@ -91,7 +91,7 @@ function generateToken(user) {
 // });
 
 // testing this double get
-// router.get("users/:id", async (req, res) => {
+// router.get("users/all", async (req, res) => {
 //   const { id } = req.params;
 
 //   try {
