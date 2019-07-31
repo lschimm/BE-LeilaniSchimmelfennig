@@ -37,12 +37,12 @@ function authenticate(req, res, next) {
         return res.status(401).json(err);
       }
       console.log("Yes, it's working");
-      // req.decoded = {
-      //   token: token,
-      //   username: decoded.username,
-      //   id: decoded.subject
-      // };
-      req.decoded = decoded;
+      req.decoded = {
+        token: token,
+        username: decoded.username,
+        id: decoded.subject
+      };
+      // req.decoded = decoded;
       console.log("req.decoded: \n", req.decoded);
       next();
     });
@@ -53,6 +53,5 @@ function authenticate(req, res, next) {
   }
 }
 
-module.exports = {
-  authenticate
-};
+module.exports =
+  authenticate;

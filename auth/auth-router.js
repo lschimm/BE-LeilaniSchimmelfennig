@@ -79,7 +79,7 @@ router.get("/users", (req, res) => {
     });
 });
 
-router.get("/usersHere/:id", (req, res) => {
+router.get("/users/:id", (req, res) => {
   const id = req.params.id;
   Users.find(id)
     .then(users => {
@@ -91,20 +91,20 @@ router.get("/usersHere/:id", (req, res) => {
 });
 
 //testing this double get
-router.get("users/:id", async (req, res) => {
-  const { id } = req.params;
+// router.get("users/:id", async (req, res) => {
+//   const { id } = req.params;
 
-  try {
-    const user = await URLSearchParams.getItemById2(id);
+//   try {
+//     const user = await URLSearchParams.getItemById2(id);
 
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).json({ message: `this id is wrong => ${id}.` });
-    }
-  } catch (error) {
-    res.status(500).json({ message: `couldn't do it` });
-  }
-});
+//     if (user) {
+//       res.json(user);
+//     } else {
+//       res.status(404).json({ message: `this id is wrong => ${id}.` });
+//     }
+//   } catch (error) {
+//     res.status(500).json({ message: `couldn't do it` });
+//   }
+// });
 
 module.exports = router;
