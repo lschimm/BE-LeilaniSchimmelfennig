@@ -69,28 +69,28 @@ function generateToken(user) {
   return jwt.sign(payload, jwtKey, options);
 }
 
-router.get("/users", (req, res) => {
-  Users.getAllUsers()
-    .then(users => {
-      res.status(200).json(users);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
+// router.get("/users", (req, res) => {
+//   Users.getAllUsers()
+//     .then(users => {
+//       res.status(200).json(users);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
 
-router.get("/users/:id", (req, res) => {
-  const id = req.params.id;
-  Users.find(id)
-    .then(users => {
-      res.status(200).json(users);
-    })
-    .catch(error => {
-      res.status(500).json(error);
-    });
-});
+// router.get("/users/:id", (req, res) => {
+//   const id = req.params.id;
+//   Users.find(id)
+//     .then(users => {
+//       res.status(200).json(users);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error);
+//     });
+// });
 
-//testing this double get
+// testing this double get
 // router.get("users/:id", async (req, res) => {
 //   const { id } = req.params;
 

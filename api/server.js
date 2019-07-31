@@ -13,13 +13,15 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use("/api", authenticate, authRouter);
-server.use("/api", postRouter);
-// server.use("/api", userRouter);
+server.use("/api", authRouter);
+server.use("/api", authenticate, postRouter);
+server.use("/api", authenticate, userRouter);
 
 server.get("/", (req, res) => {
   res.send("should be up!");
   //   res.status(200).json({ message: `server is up` });
 });
+
+
 
 module.exports = server;
