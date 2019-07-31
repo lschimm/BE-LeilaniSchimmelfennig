@@ -39,11 +39,11 @@ Will need:
 
 **Register 201 Response:**
 
-{
-"id": 25,
-"username": "dude12345",
-"password": "$2a$12\$guFuTI04FG7ammM/PFak1OZcqvXKmFFq.yn4epe2paPKobzQTwtPm"
-}
+    {
+    "id": 25,
+    "username": "dude12345",
+    "password": "$2a$12\$guFuTI04FG7ammM/PFak1OZcqvXKmFFq.yn4epe2paPKobzQTwtPm"
+    }
 
 **Login Example:**
 
