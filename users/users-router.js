@@ -19,17 +19,6 @@ router.get("/users", (req, res) => {
     });
 });
 
-// router.get("/users/:id", (req, res) => {
-//   const id = req.params.id;
-//   Users.findById(id)
-//     .then(users => {
-//       res.status(200).json(users);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
 router.get('/users/me', (req, res) => {
   const id = req.decoded.subject;
   Users.findById(id)
@@ -44,7 +33,7 @@ router.get('/users/me', (req, res) => {
 router.get('/users/:id', (req, res) => {
   const { id } = req.params;
   console.log();
-  Users.findById(req.params)
+  Users.findById(id)
     .then(user => {
       res.status(200).json(user);
     })
@@ -53,17 +42,12 @@ router.get('/users/:id', (req, res) => {
     });
 });
 
-//need router.get("users/:id/items", (req, res) => {})
 
-
-
-
-// testing this double get
-router.get("users/:id/items", async (req, res) => {
+router.get('/users/:id/items', async (req, res) => {
   const { id } = req.params;
 
   try {
-    const user = await URLSearchParams.getItemById2(id);
+    const user = await Users.getItemById2(id);
 
     if (user) {
       res.json(user);
@@ -75,34 +59,5 @@ router.get("users/:id/items", async (req, res) => {
   }
 });
 
-// router.get("/users/:id", (req, res) => {
-//   // const { id } = req.decoded.id;
-//   // console.log("What's in ID?: \n", req.decoded.id);
-//   // const results = Number.isInteger(req.decoded.id);
-//   // console.log(results);
-//   const { id } = req.params.id;
-//   console.log(id);
-//   Usersdb.findById(req.headers.id)
-//     .then(res => {
-//       //   if (res) {
-//       res.status(200).json({ res });
-//       //   } else {
-//       //     res.status(404).json({ message: "User not found" });
-//       //   }
-//     })
-//     .catch(error => {
-//       res.status(500).json({ message: "error1", error });
-//     });
-// });
-
-// // router.("/users", (req, res) => {
-// //   Userdb.add(req.)
-// //     .then(res => {
-// //       res.status(200).json({ res });
-// //     })
-// //     .catch(error => {
-// //       res.status(500).json({ message: error });
-// //     });
-// // });
 
 module.exports = router;

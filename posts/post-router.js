@@ -3,7 +3,7 @@ const router = require("express").Router();
 
 const Posts = require("./post-model.js");
 
-const { authenticate } = require("../auth/restricted-middleware.js");
+// const { authenticate } = require("../auth/restricted-middleware.js");
 // will need to use this ^
 router.use(express.json());
 
@@ -23,6 +23,19 @@ router.get("/item/:id", (req, res) => {
     });
 });
 
+
+// router.get('/users/:id/items', (req, res) => {
+//   Posts.getItemById(req.params.id)
+//     .then(res => {
+//       if (res) {
+//         res.status(200).json({ item: res })
+//       } else {
+//         res.status(404).json({ message: "Item not found" })
+//       }
+//     }).catch(err => {
+//       res.status(500).json({ message: "Error getting User's items" })
+//     })
+// })
 
 // post here ****
 // works need json && authorization: token

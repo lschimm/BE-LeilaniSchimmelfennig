@@ -77,13 +77,15 @@ Endpoint: https://bw-bucket-list.herokuapp.com/api/users/:id
 - Requires Token (for Headers Authorization)
 - Private Access via login first
 
+**GET Logged in User**
+Endpoint: https://bw-bucket-list.herokuapp.com/api/users/me
+
 ***Items***
 
 - User must be logged in
 - Headers Authorization Required
 
-**GET Logged in User**
-Endpoint: https://bw-bucket-list.herokuapp.com/api/users/me
+
 
 **POST an Item**
 
