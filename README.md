@@ -26,6 +26,8 @@ DELETE | /api/item/:id | deletes that item | Private
 
 **Register-User**
 
+Endpoint: https://bw-bucket-list.herokuapp.com/api/register
+
 requires username and password
 
 Will need:
@@ -45,6 +47,8 @@ Will need:
 
 **Login Example:**
 
+Endpoint: https://bw-bucket-list.herokuapp.com/api/login
+
 requires username and password:
 
     {
@@ -53,7 +57,7 @@ requires username and password:
     }
 
 Login User Response 200:
-// message of "Welcome **\_**!" and a token
+// message of "Welcome ----!" and gives a token
 
     {
         "message": "Welcome placeholderUsername!",

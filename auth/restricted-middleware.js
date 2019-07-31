@@ -2,6 +2,10 @@ const jwt = require("jsonwebtoken");
 
 const secret = require("../config/secret.js");
 
+const jwtKey =
+  process.env.JWT_SECRET ||
+  "this will be my secret, you guys, and it'll sit right in here.";
+
 // module.exports = (req, res, next) => {
 //   const token = req.headers.authorization;
 
@@ -22,19 +26,24 @@ const secret = require("../config/secret.js");
 //   }
 // };
 
-module.exports = {
-  authenticate
-};
-
 function authenticate(req, res, next) {
-  const token = req.get("Authorization");
+  const token = req.headers.authorization;
+  console.log("Token: \n", token);
 
   if (token) {
     jwt.verify(token, jwtKey, (err, decoded) => {
-      if (err) return res.status(401).json(err);
-
+      console.log("Is it working?\n");
+      if (err) {
+        return res.status(401).json(err);
+      }
+      console.log("Yes, it's working");
+      // req.decoded = {
+      //   token: token,
+      //   username: decoded.username,
+      //   id: decoded.subject
+      // };
       req.decoded = decoded;
-
+      console.log("req.decoded: \n", req.decoded);
       next();
     });
   } else {
@@ -43,3 +52,7 @@ function authenticate(req, res, next) {
     });
   }
 }
+
+module.exports = {
+  authenticate
+};

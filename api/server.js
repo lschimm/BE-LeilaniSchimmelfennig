@@ -4,15 +4,18 @@ const cors = require("cors");
 
 const authRouter = require("../auth/auth-router.js"); // for register && login
 const postRouter = require("../posts/post-router.js"); // posts/lists
+const { authenticate } = require("../auth/restricted-middleware");
+const userRouter = require("../users/users-router");
 
 const server = express();
 
 server.use(helmet());
-server.use(express.json());
 server.use(cors());
+server.use(express.json());
 
 server.use("/api", authRouter);
 server.use("/api", postRouter);
+server.use("/api", authenticate, userRouter);
 
 server.get("/", (req, res) => {
   res.send("should be up!");
