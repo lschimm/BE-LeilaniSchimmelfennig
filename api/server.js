@@ -16,6 +16,7 @@ server.use("/api", postRouter);
 
 server.get("/", (req, res) => {
   res.send("should be up!");
+  //   res.status(200).json({ message: `server is up` });
 });
 
 module.exports = server;

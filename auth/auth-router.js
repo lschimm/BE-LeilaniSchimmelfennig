@@ -79,6 +79,17 @@ router.get("/users", (req, res) => {
     });
 });
 
+router.get("/usersHere/:id", (req, res) => {
+  const id = req.params.id;
+  Users.find(id)
+    .then(users => {
+      res.status(200).json(users);
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
+
 //testing this double get
 router.get("users/:id", async (req, res) => {
   const { id } = req.params;

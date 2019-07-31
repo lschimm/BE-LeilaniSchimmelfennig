@@ -20,21 +20,21 @@ module.exports = {
 
 function find() {}
 function findById(id) {
-  return db("goals")
+  return db("items")
     .where({ id })
     .first();
 }
-async function add(goal) {
-  const [id] = await db("goals").insert(goal);
+async function add(item) {
+  const [id] = await db("items").insert(item);
   return findById(id);
 }
 function remove(id) {
-  return db("goals")
+  return db("items")
     .where({ id })
     .del();
 }
 function update(id, changes) {
-  return db("goals")
+  return db("items")
     .where({ id })
     .update(changes, "*");
 }
@@ -54,6 +54,7 @@ function getItemById(id) {
 
 async function createItem(item) {
   const [id] = await db("items")
+    .where(id)
     .insert(item)
     .then("id");
   return id;

@@ -3,6 +3,8 @@ const router = require("express").Router();
 
 const Posts = require("./post-model.js");
 
+const { authenticate } = require("../auth/restricted-middleware.js");
+// will need to use this ^
 router.use(express.json());
 
 // will be at /api/item
@@ -25,20 +27,12 @@ router.post("/item", (req, res) => {
       if (!user_id) {
         res.status(400).json({ message: "need id, etc " });
       } else {
-        res.status(201).json(goal);
+        res.status(201).json({ message: `item good`, itemInfo });
       }
     })
     .catch(error => {
       res.status(500).json(error);
     });
-
-  //   Posts.createItem(req.body)
-  //     .then(res => {
-  //       res.status(200).json({ id: res });
-  //     })
-  //     .catch(error => {
-  //       res.status(500).json({ message: "error2", error });
-  //     });
 });
 
 router.get("/item/:id", (req, res) => {
@@ -55,24 +49,35 @@ router.get("/item/:id", (req, res) => {
     });
 });
 
-router.put("/item/:id", (req, res) => {
-  Posts.updateItem(req.params.id, req.body)
-    .then(res => {
-      res.status(200).json({ id: res });
-    })
-    .catch(error => {
-      res.status(500).json({ message: "error3", error });
-    });
+// deleting item at id
+// not hooked up yet // errno1
+
+router.delete("/item/:id", async (req, res) => {
+  try {
+    const item = await Posts.remove(req.params.id);
+    if (count > 0) {
+      res.status(200).json({ message: `deleted id ${req.params.id}` });
+    } else {
+      res.status(404).json({ message: "could not find at that id" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "error removing the item" });
+  }
 });
 
-router.delete("/item/:id", (req, res) => {
-  Posts.deleteItem(req.params.id)
-    .then(res => {
-      res.status(200).json({ message: `deleted id ${req.params.id}` });
-    })
-    .catch(error => {
-      res.status(500).json({ message: "delete error", error });
-    });
+// updating an item at the id // works
+
+router.put("/item/:id", async (req, res) => {
+  try {
+    const item = await Posts.update(req.params.id, req.body);
+    if (item) {
+      res.status(200).json(item);
+    } else {
+      res.status(404).json({ message: "the item could not be found" });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "error updating the item" });
+  }
 });
 
 /// posting an item
@@ -89,6 +94,15 @@ router.post("item/:id", (req, res) => {});
 //     });
 // });
 
-// get users and items
+// get all the items
+router.get("/item", (req, res) => {
+  Posts.find()
+    .then(items => {
+      res.status(200).json({ items });
+    })
+    .catch(error => {
+      res.status(500).json(error);
+    });
+});
 
 module.exports = router;
