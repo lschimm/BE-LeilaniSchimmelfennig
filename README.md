@@ -98,7 +98,7 @@ Example:
         "user_id": 25,
         "id": 8,
         "goal": "walk across the room again",
-        "complete" : false,
+        "complete" : true,
         "journalEntry" : "I did it",
         "photoUrl": "a url will go here"
     }
