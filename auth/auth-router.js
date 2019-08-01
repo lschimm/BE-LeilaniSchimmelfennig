@@ -69,42 +69,5 @@ function generateToken(user) {
   return jwt.sign(payload, jwtKey, options);
 }
 
-// router.get("/users", (req, res) => {
-//   Users.getAllUsers()
-//     .then(users => {
-//       res.status(200).json(users);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-// router.get("/users/:id", (req, res) => {
-//   const id = req.params.id;
-//   Users.find(id)
-//     .then(users => {
-//       res.status(200).json(users);
-//     })
-//     .catch(error => {
-//       res.status(500).json(error);
-//     });
-// });
-
-// testing this double get
-// router.get("users/all", async (req, res) => {
-//   const { id } = req.params;
-
-//   try {
-//     const user = await URLSearchParams.getItemById2(id);
-
-//     if (user) {
-//       res.json(user);
-//     } else {
-//       res.status(404).json({ message: `this id is wrong => ${id}.` });
-//     }
-//   } catch (error) {
-//     res.status(500).json({ message: `couldn't do it` });
-//   }
-// });
 
 module.exports = router;
