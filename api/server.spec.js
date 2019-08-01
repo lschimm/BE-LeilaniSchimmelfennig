@@ -8,17 +8,17 @@ describe("server", () => {
         .get("/")
         .expect(200);
     });
-    // describe("should return 200", () => {
-    //   it("server things", () => {
-    //     return request(server)
-    //       .get('/')
-    //       .then(res => {
-    //         expect(res.status).toBe(200)
-    //       })
-    //   })
-    // })
+    describe("should return 200", () => {
+      it("server things", () => {
+        return supertest(server)
+          .get('/')
+          .then(res => {
+            expect(res.status).toBe(200)
+          })
+      })
+    })
     it('should return some JSON data', () => {
-      return request(server)
+      return supertest(server)
         .get('/')
         .then(res => {
           expect(res.type).toMatch(/json/)

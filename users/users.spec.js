@@ -13,17 +13,17 @@ describe("routes", () => {
     });
 
     describe("GET /", () => {
-        it("should return 404 lol", () => {
-            return request(server)
+        it("should return 200", () => {
+            return supertest(server)
                 .get("/")
                 .then(res => {
-                    expect(res.status).toBe(404);
+                    expect(res.status).toBe(200);
                 });
         });
 
         describe("/login", () => {
             it("i should get that error", () => {
-                return request(server)
+                return supertest(server)
                     .post("/api/login")
                     .then(res => {
                         expect(res.status).toBe(500);
