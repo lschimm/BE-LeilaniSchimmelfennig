@@ -6,7 +6,7 @@ const Users = require("./auth-model.js");
 const secrets = require("../config/secret.js");
 
 // middleware
-const { authenticate } = require("./restricted-middleware.js");
+// const { authenticate } = require("./restricted-middleware.js");
 
 // this
 require("dotenv").config();

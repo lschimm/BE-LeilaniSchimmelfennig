@@ -1,5 +1,5 @@
-const supertest = require("supertest");
 const server = require("./server.js");
+const supertest = require("supertest")
 
 describe("server", () => {
   describe("GET is at /", () => {
@@ -8,5 +8,23 @@ describe("server", () => {
         .get("/")
         .expect(200);
     });
+    // describe("should return 200", () => {
+    //   it("server things", () => {
+    //     return request(server)
+    //       .get('/')
+    //       .then(res => {
+    //         expect(res.status).toBe(200)
+    //       })
+    //   })
+    // })
+    it('should return some JSON data', () => {
+      return request(server)
+        .get('/')
+        .then(res => {
+          expect(res.type).toMatch(/json/)
+          expect(res.type).toBe('application/json')
+        })
+    })
   });
 });
+

@@ -18,7 +18,7 @@ server.use("/api", authenticate, postRouter);
 server.use("/api", authenticate, userRouter);
 
 server.get("/", (req, res) => {
-  res.send("should be up!");
+  res.status(200).json({ api: "should be up!" });
   //   res.status(200).json({ message: `server is up` });
 });
 

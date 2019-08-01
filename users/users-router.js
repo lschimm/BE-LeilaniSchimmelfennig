@@ -6,8 +6,7 @@ const Users = require("../auth/auth-model");
 
 const { authenticate } = require("../auth/restricted-middleware.js");
 // // will need to use this ^
-// router.use(express.json());
-
+require("dotenv").config();
 
 router.get("/users", (req, res) => {
   Users.getAllUsers()
